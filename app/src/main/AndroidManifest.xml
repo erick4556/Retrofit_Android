@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.retrofit_android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Views.Activity.EditarPerfilActivity"
+            android:parentActivityName=".Views.Activity.PerfilActivity"></activity>
+        <activity android:name=".Views.Activity.PerfilActivity"
+            android:parentActivityName=".Views.Activity.PrincipalActivity"/>
+        <activity
+            android:name=".Views.Activity.ProfesorDetalleActivity"
+            android:parentActivityName=".Views.Activity.ProfesoresActivity" />
+        <activity
+            android:name=".Views.Activity.ProfesoresActivity"
+            android:parentActivityName=".Views.Activity.PrincipalActivity" />
+        <activity
+            android:name=".Views.Activity.CategoriaDetalleActivity"
+            android:parentActivityName=".Views.Activity.CategoriasActivity" />
+        <activity
+            android:name=".Views.Activity.CategoriasActivity"
+            android:parentActivityName=".Views.Activity.PrincipalActivity" />
+        <activity
+            android:name=".Views.Activity.CursoDetailActivity"
+            android:parentActivityName=".Views.Activity.PrincipalActivity" />
+        <activity
+            android:name=".Views.Activity.CargaActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_carga"
+            android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Views.Activity.PrincipalActivity"
+            android:label="@string/title_activity_principal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Views.Activity.RegistroActivity"
+            android:theme="@style/AppThemeNoAction" />
+        <activity
+            android:name=".Views.Activity.MainActivity"
+            android:theme="@style/AppThemeNoAction" />
+    </application>
+
+</manifest>
