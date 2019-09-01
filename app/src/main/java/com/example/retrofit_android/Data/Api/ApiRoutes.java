@@ -4,6 +4,7 @@ import com.example.retrofit_android.Data.Model.Categoria;
 import com.example.retrofit_android.Data.Model.Curso;
 import com.example.retrofit_android.Data.Model.LoginBody;
 import com.example.retrofit_android.Data.Model.Profesor;
+import com.example.retrofit_android.Data.Model.ServerResponse;
 import com.example.retrofit_android.Data.Model.User;
 
 import java.util.List;
@@ -46,4 +47,8 @@ public interface ApiRoutes {
 
     @POST("user/edit") //OJO la actualizacion la hago sin pasarle id por que se va los datos por parámetros, pero lo puedo hacer pasandole id
     Call<User> editarUser(@Body User user);
+
+    @POST("user/curso/{user_id}/{curso_id}")
+    Call<ServerResponse> agregarCurso(@Path("user_id") int user_id, @Path("curso_id") int curso_id);
+
 }

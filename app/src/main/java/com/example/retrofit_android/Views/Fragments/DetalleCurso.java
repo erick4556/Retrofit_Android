@@ -15,7 +15,11 @@ import android.widget.TextView;
 
 import com.example.retrofit_android.Data.Api.Api;
 import com.example.retrofit_android.Data.Model.Curso;
+import com.example.retrofit_android.Data.Model.ServerResponse;
+import com.example.retrofit_android.Data.Preferences.SessionPreferences;
 import com.example.retrofit_android.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -29,6 +33,7 @@ public class DetalleCurso extends Fragment {
 
     ImageView imgPortada;
     TextView tvTiulo, tvDescripcion;
+    private SessionPreferences prefs;
 
     public DetalleCurso() {
         // Required empty public constructor
@@ -38,7 +43,7 @@ public class DetalleCurso extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        prefs = new SessionPreferences(getContext());
     }
 
     @Override
@@ -49,6 +54,14 @@ public class DetalleCurso extends Fragment {
         imgPortada = (ImageView)view.findViewById(R.id.imgPortada);
         tvTiulo = (TextView)view.findViewById(R.id.tvTitulo);
         tvDescripcion = (TextView)view.findViewById(R.id.tvDescripcion);
+
+        FloatingActionButton fab = view.findViewById(R.id.btnFavaorito);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               agregarCurso(view);
+            }
+        });
 
         getCursoId();
 
@@ -69,6 +82,21 @@ public class DetalleCurso extends Fragment {
             @Override
             public void onFailure(Call<Curso> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void agregarCurso(final View view){
+        Call<ServerResponse> callUserCurso = Api.getApi().agregarCurso(prefs.getUsuario().getId(), getActivity().getIntent().getIntExtra("id",0));
+        callUserCurso.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                    Snackbar.make(view, response.body().getMessage(), Snackbar.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Snackbar.make(view, "Error al conectarse al servidor", Snackbar.LENGTH_LONG).show();
             }
         });
     }

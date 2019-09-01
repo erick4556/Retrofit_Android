@@ -1,56 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Views.Fragments.DetalleCurso">
 
-
-      <ScrollView
+      <FrameLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent">
 
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:orientation="vertical">
+      <ScrollView
 
 
-         <ImageView
-             android:id="@+id/imgPortada"
-             android:layout_width="match_parent"
-             android:layout_height="220dp"
-             android:background="#cdcdcd"
-             android:scaleType="centerCrop"/>
-
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:orientation="vertical"
-             android:padding="10dp">
-
-          <TextView
-              android:id="@+id/tvTitulo"
-              android:text="Título del curso"
               android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+
+                  <ImageView
+                      android:id="@+id/imgPortada"
+                      android:layout_width="match_parent"
+                      android:layout_height="220dp"
+                      android:background="#cdcdcd"
+                      android:scaleType="centerCrop"/>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:padding="10dp">
+
+                      <TextView
+                          android:id="@+id/tvTitulo"
+                          android:text="Título del curso"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:textSize="21dp"
+                          android:textColor="@color/colorText" />
+
+                      <TextView
+                          android:id="@+id/tvDescripcion"
+                          android:text="Descripción"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:textSize="14dp"
+                          android:layout_marginTop="10dp"/>
+
+                  </LinearLayout>
+
+              </LinearLayout>
+
+          </ScrollView>
+
+          <com.google.android.material.floatingactionbutton.FloatingActionButton
+              android:id="@+id/btnFavaorito"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:textSize="21dp"
-              android:textColor="@color/colorText" />
+              android:layout_gravity="bottom|end"
+              android:layout_margin="@dimen/fab_margin"
+              android:src="@drawable/heart" />
 
-            <TextView
-                android:id="@+id/tvDescripcion"
-                android:text="Descripción"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14dp"
-                android:layout_marginTop="10dp"/>
 
-         </LinearLayout>
+      </FrameLayout>
 
-         </LinearLayout>
-
-      </ScrollView>
 
 
 
