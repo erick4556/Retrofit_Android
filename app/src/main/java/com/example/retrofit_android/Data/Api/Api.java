@@ -2,7 +2,7 @@ package com.example.retrofit_android.Data.Api;
 
 public class Api {
 
-    private static final String BASE_URL = "ruta principal";
+    private static final String BASE_URL = "route";
 
 
     public static ApiRoutes getApi(){

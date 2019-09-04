@@ -51,4 +51,7 @@ public interface ApiRoutes {
     @POST("user/curso/{user_id}/{curso_id}")
     Call<ServerResponse> agregarCurso(@Path("user_id") int user_id, @Path("curso_id") int curso_id);
 
+    @GET("curso/user/{id}")
+    Call<List<Curso>> getCursosUser(@Path("id")int id);
+
 }
