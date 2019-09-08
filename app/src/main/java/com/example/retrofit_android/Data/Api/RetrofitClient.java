@@ -31,7 +31,25 @@ public class RetrofitClient {
     static private OkHttpClient getClient() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(5, TimeUnit.MINUTES) //Tiempo que voy esperar para la conexión
-                .readTimeout(5, TimeUnit.MINUTES).build(); //
+                .readTimeout(5, TimeUnit.MINUTES)
+                //Se intercepta la consulta que se esta haciendo a la url original y agregandole la api key al final procediendo a la siguiente consulta luego de haber agregado esto al final
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request origen = chain.request();
+                        HttpUrl origenHttpUrl = origen.url(); //Para obtener la url del request o la consulta que se esta haciendo
+
+                        HttpUrl url = origenHttpUrl.newBuilder()
+                                .addQueryParameter("nombre", "apikey")
+                                .build();
+
+                        Request.Builder reqestBuilder = origen.newBuilder().url(url);
+                        Request request = reqestBuilder.build();
+
+                        return chain.proceed(request);
+                    }
+                })
+                .build();
 
         return client;
     }
